@@ -42,6 +42,15 @@ net.Receive("aw_play_weapon_effect", function()
 		--add_particle(bullet_position, "particles/smokey", 20, 20, 1, 3, 20, angle, 0.5)
 		add_particle(bullet_position, "particles/flamelet4", 10, 5, 0, 0.4, 100, angle:Forward(), 0.1)
 		add_particle(bullet_position, "particles/smokey", 10, 20, 0, 1, 10, angle:Forward(), 0.3, 60)
+	elseif effect_type == EFFECT_TYPE_SHOTGUN then
+		util.ScreenShake( Vector( 0, 0, 0 ), 20 / (LocalPlayer():GetPos() - sound_position):Length(), 3, 1, 8000 )
+		sound.Play( "weapons/shotgun/shotgun_dbl_fire.wav", sound_position, 120 )
+		add_particle(bullet_position, "particles/smokey", 5, 5, 0, 1, 5, angle, 0.5)
+		for i=1,6 do 
+			table.insert(projectiles, projectile)
+			projectile.angle = projectile.angle + AngleRand( angle.x / 1.25, angle.y / 1.25, angle.x * 1.25, angle.y * 1.25))
+			add_particle(bullet_position, "particles/flamelet4", 10, 5, 0, 0.4, 100, angle:Forward(), 0.1)
+		end 
 	elseif effect_type == EFFECT_TYPE_BOMB then
 		projectile.model = "models/aw_bomb/aw_bomb_bullet.mdl"
 		table.insert(projectiles, projectile)
@@ -95,6 +104,12 @@ net.Receive("aw_bullet_hit", function()
 				sound.Play( "FX_RicochetSound.Ricochet", position )
 				add_particle(raw_position, "particles/flamelet4", 10, 5, 0, 0.4, 100, Vector(), 0.1)
 				add_particle(raw_position, "particles/smokey", 10, 20, 0, 1, 10, Vector(), 0.3, 60)
+			end
+			if effect_type == EFFECT_TYPE_SHOTGUN then
+				util.ScreenShake( Vector( 0, 0, 0 ), 110 / (LocalPlayer():GetPos() - position):Length(), 3, 1, 8000 )
+				sound.Play( "FX_RicochetSound.Ricochet", position )
+				add_particle(raw_position, "particles/flamelet4", 5, 5, 0, 0.4, 25, Vector(), 0.1)
+				add_particle(raw_position, "particles/smokey", 5, 10, 0, 1, 5, Vector(), 0.3, 60)
 			end
 			if effect_type == EFFECT_TYPE_BOMB then
 				util.ScreenShake( Vector( 0, 0, 0 ), 500 / (LocalPlayer():GetPos() - position):Length(), 3, 1, 8000 )

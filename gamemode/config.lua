@@ -373,6 +373,25 @@ global_config.categories[CATEGORY_WEAPONS].props = {
 		category = CATEGORY_WEAPONS
 	},
 	{
+		name = "Shotgun",
+		//TODO shotgun full model.
+		model = "models/aw_shotgun/aw_rifle_full.mdl",
+		entity = "aw_weapon_shotgun",
+		info = {
+			weight = 30,
+			health = 50,
+			cost = 600
+		},
+		custom_info = {
+			damage = 2,
+			speed = 2800,
+			gravity = 1.25,
+			splash_radius = 5,
+			effect_type = EFFECT_TYPE_SHOTGUN
+		},
+		category = CATEGORY_WEAPONS
+	},
+	{
 		name = "Grappling Hook",
 		model = "models/aw_hook/aw_hook_full.mdl",
 		entity = "aw_weapon_hook",
