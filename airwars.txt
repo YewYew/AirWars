@@ -3,7 +3,7 @@
 	"title" "Air Wars"
 	"maps" "^aw_"
 	"menusystem" "1"
-	"version" "0.1.0"
+	"version" "0.1.1"
 	"author_name" "The HellBox"
 	"author_email" "thehellbox11@gmail.com"
 	"author_url" "https://github.com/TheHellBox"
