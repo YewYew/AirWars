@@ -14,22 +14,32 @@ end
 
 -- NOTE: Weapon is just a part
 function AirWars:ShipShoot(ship, weapon, offset, angle, weapon_ent)
-	local end_pos = Vector()
-	local angle = angle or Angle()
-	local offset = offset or 0
+	local nb_bullet = 1
+	if weapon_ent:GetClass() == "aw_weapon_shotgun" then
+		nb_bullet = 6
+	end
+	
+	for i=1, nb_bullet do
+		local end_pos = Vector()
+		local angle = angle or Angle()
+		local offset = offset or 0
 
-	local angle = weapon.angle + angle
-	local position = weapon.position - angle:Forward() * offset
+		local angle = weapon.angle + angle
+		if weapon_ent:GetClass() == "aw_weapon_shotgun" then
+			angle:Add( Angle(math.Rand( -5, 5 ), math.Rand( -5, 5 ), 0) )
+		end
+		local position = weapon.position - angle:Forward() * offset
 
-	local bullet_position, bullet_angle = calculate_bullet_start(ship, position, angle)
-	local bullet = add_bullet(
-		bullet_position,
-		bullet_angle,
-		weapon,
-		ship.velocity,
-		weapon_ent
-	)
-	play_effect(bullet_position, bullet_angle, bullet, weapon, ship)
+		local bullet_position, bullet_angle = calculate_bullet_start(ship, position, angle)
+		local bullet = add_bullet(
+			bullet_position,
+			bullet_angle,
+			weapon,
+			ship.velocity,
+			weapon_ent
+		)
+		play_effect(bullet_position, bullet_angle, bullet, weapon, ship)
+	end
 end
 
 hook.Add("PlayerButtonDown", "AW Try Shoot", function(player, button)
