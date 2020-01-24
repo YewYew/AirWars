@@ -13,21 +13,14 @@ local function play_effect(position, angle, bullet, weapon, ship)
 end
 
 -- NOTE: Weapon is just a part
-function AirWars:ShipShoot(ship, weapon, offset, angle, weapon_ent)
-	local nb_bullet = 1
-	if weapon_ent:GetClass() == "aw_weapon_shotgun" then
-		nb_bullet = 6
-	end
-	
-	for i=1, nb_bullet do
+function AirWars:ShipShoot(ship, weapon, offset, angle, weapon_ent, bullet_amount, spread)	
+	for i=1, bullet_amount do
 		local end_pos = Vector()
 		local angle = angle or Angle()
 		local offset = offset or 0
 
 		local angle = weapon.angle + angle
-		if weapon_ent:GetClass() == "aw_weapon_shotgun" then
-			angle:Add( Angle(math.Rand( -5, 5 ), math.Rand( -5, 5 ), 0) )
-		end
+		angle:Add( Angle(math.Rand( -spread, spread ), math.Rand( -spread, spread ), 0) )
 		local position = weapon.position - angle:Forward() * offset
 
 		local bullet_position, bullet_angle = calculate_bullet_start(ship, position, angle)
