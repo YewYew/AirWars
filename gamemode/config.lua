@@ -374,8 +374,8 @@ global_config.categories[CATEGORY_WEAPONS].props = {
 	},
 	{
 		name = "Shotgun",
-		//TODO shotgun full model.
-		model = "models/aw_shotgun/aw_shotgun_gun.mdl",
+		//TODO fix shotgun texture full model.
+		model = "models/aw_shotgun/aw_shotgun_full.mdl",
 		entity = "aw_weapon_shotgun",
 		info = {
 			weight = 30,

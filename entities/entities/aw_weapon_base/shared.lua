@@ -5,6 +5,8 @@ ENT.Spawnable = false
 
 ENT.ShootingAngle = Angle()
 ENT.ShootingOffset = 70
+ENT.BulletAmount = 1
+ENT.Spread = 1
 ENT.AmmoAmount = 1
 ENT.Cooldown = 2
 ENT.DefaultAmmo = 0

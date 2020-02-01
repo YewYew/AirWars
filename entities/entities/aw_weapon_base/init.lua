@@ -26,7 +26,7 @@ end
 function ENT:Shoot(player)
 	if CurTime() < (self.cooldown or 0) then return end
 	local self_ship = world_ships[self:GetAWTeam()]
-	AirWars:ShipShoot(self_ship, self_ship.parts[self.part_id], self.ShootingOffset, self.ShootingAngle, self)
+	AirWars:ShipShoot(self_ship, self_ship.parts[self.part_id], self.ShootingOffset, self.ShootingAngle, self, self.BulletAmount, self.Spread)
 	self:SetAmmoAmount(math.Clamp(self:GetAmmoAmount() - 1, 0, self.AmmoAmount))
 	self.cooldown = CurTime() + self.Cooldown
 	self:OnShoot(self_ship.parts[self.part_id])
